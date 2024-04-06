@@ -8,12 +8,9 @@ from parameterized import parameterized
 
 def access_nested_map(nested_map, path):
     """function"""
-    try:
-        for key in path:
-            nested_map = nested_map[key]
-        return nested_map
-    except KeyError:
-        return None
+    for key in path:
+        nested_map = nested_map[key]
+    return nested_map
 
 
 class TestAccessNestedMap (unittest.TestCase):
