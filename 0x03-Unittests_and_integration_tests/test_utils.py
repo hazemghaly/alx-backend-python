@@ -2,7 +2,6 @@
 """Generic utilities for github org client.
 """
 import unittest
-import utils
 from parameterized import parameterized
 
 
@@ -25,6 +24,6 @@ class TestAccessNestedMap (unittest.TestCase):
         result = access_nested_map(nested_map, path)
         self.assertEqual(result, expected_result)
 
-    def test_access_nested_map_exception(self, nested_map, path):
+    def test_access_nested_map_exception(self):
         """test function"""
         self.assertRaises(KeyError)
