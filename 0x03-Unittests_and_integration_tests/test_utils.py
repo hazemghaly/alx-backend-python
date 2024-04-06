@@ -17,8 +17,8 @@ class TestAccessNestedMap (unittest.TestCase):
     """ class testing
     """
     @parameterized.expand([
-            ({}, ("a",)),
-            ({"a": 1}, ("a", "b"))
+            ({}, ("a",), 1),
+            ({"a": 1}, ("a", "b"), 2)
         ])
     def test_access_nested_map_exception(self, nested_map, path):
         """test function"""
