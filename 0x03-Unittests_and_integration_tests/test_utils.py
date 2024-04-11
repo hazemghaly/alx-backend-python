@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Generic utilities for github org client.
 """
-from utils import access_nested_map, get_json
+from utils import access_nested_map, get_json, memoize
 from parameterized import parameterized
 from unittest.mock import patch, Mock
 import unittest
@@ -46,3 +46,27 @@ class TestGetJson(unittest.TestCase):
         result = get_json(test_url)
         mock_get.assert_called_once_with(test_url)
         self.assertEqual(result, test_payload)
+
+
+class TestMemoize(unittest.TestCase):
+    """class of memory"""
+    def test_memoize(self):
+        """test"""
+        class TestClass:
+            """class of test"""
+            def a_method(self):
+                """a_method"""
+                return 42
+
+            @memoize
+            def a_property(self):
+                """a_property"""
+                return self.a_method()
+        with patch.object(TestClass, 'a_method', return_value=42
+                          ) as mock_a_method:
+            obj = TestClass()
+            result1 = obj.a_property
+            result2 = obj.a_property
+            self.assertEqual(result1, 42)
+            self.assertEqual(result2, 42)
+            mock_a_method.assert_called_once()
