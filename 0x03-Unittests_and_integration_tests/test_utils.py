@@ -16,6 +16,9 @@ class TestAccessNestedMap (unittest.TestCase):
     """ class testing
     """
     @parameterized.expand([
+            ({"a": 1}, ("a",), 1),
+            ({"a": {"b": 2}}, ("a",), {"b": 2}),
+            ({"a": {"b": 2}}, ("a", "b"), 2),
             ({}, ("a",), "Key not found: 'a'"),
             ({"a": 1}, ("a", "b"), "Key not found: 'b'")
         ])
